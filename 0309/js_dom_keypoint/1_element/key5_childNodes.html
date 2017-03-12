@@ -10,6 +10,7 @@ window.onload=function(){
 	//1. Element의 자식노드 찾기. childNodes 역시 NodeList객체랍니다.
 	var page = window.document.getElementById("sample_page");
 	var nodes = page.childNodes;
+	console.log(nodes);
 	alert("#sample_page의 자식노드 갯수는 ? "+nodes.length);
 	//2. 자식 노드를 하나씩 접근하기.
 	for(var i=0;i<nodes.length;i++){

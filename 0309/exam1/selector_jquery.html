@@ -1,38 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>exam</title>
+<title>exam1 - Selector with jQuery</title>
 <link rel="stylesheet" href="common.css" />
- <script src="http://code.jquery.com/jquery-latest.js"></script> jQuery library
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 $(function(){
-	var exam1CSS = function(){
-		var examObj1 = $('.exam_wrap')[0];
-		
+	var selArr = ['*', 'span', 'em span', '> span', 'div + p', 'div ~ span', '.active', '#active'
+	];
+	// var examLength = $('.exam_wrap').length;
+	var funcSelector = function(){
+		// for(i = 0; i < examLength; i++) {
+		// 	var button = $('.exam_wrap:eq('+i+')').find('button');
+		// 	button.on('click', function(){
+		// 		var examEl = $(this).parent(),
+		// 		index = examEl.index();
+		// 		examEl.find('.exam_q ' + selArr[index]).css('background','yellow');
+		// 	});
+		// }
+		$('.exam_wrap').each(function(index){
+			var examEl = $(this);
+			examEl.find('button').on('click', function(){
+				examEl.find('.exam_q ' + selArr[index]).css('background','yellow');
+			});
+		});
 	}
+	funcSelector();
 });
-
-
-// jQuery code
-// $(function(){
-// 	var examObj1 = $('.exam_wrap:eq(0)');
-// 	examObj1.find('button').on('click', function(){
-// 		examObj1.find('.exam_q *').css('background','yellow');
-// 	});
-// });
-
-// javascript code
-window.onload = function(){
-	var examObj1 = document.getElementsByClassName('exam_wrap')[0];
-	examObj1.getElementsByTagName('button')[0].onclick = function(){
-		var examChild = examObj1.getElementsByClassName('exam_q')[0].children;
-		for(var i = 0; i < examChild.length; i++){
-			examChild[i].style.backgroundColor = 'yellow';
-		}
-	};
-}
 </script>
 </head>
 <body>
