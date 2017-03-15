@@ -12,127 +12,133 @@ $(function(){
 	color = ['crimson','orange','yellow','yellowgreen','forestgreen','deepskyblue','royalblue','darkblue','darkorchid'];
 
 	// Q1
-	var exam1 = examWrap.eq(0),
-		exam1_list = exam1.find('li'),
-		exam1_btn = exam1.find('button'),
-		exam1_index = 0,
-		exam1_count = 0,
-		exam1_color = color[exam1_count];
-
 	var examFunc1 = function(){
-		exam1_btn.on('click',function(){
-			exam1_list.eq(exam1_index).css('background',exam1_color);
-			exam1_index++;
-			if(exam1_index >= exam1_list.length){
-				exam1_index = 0;
-				exam1colorReset();
+		var exam = examWrap.eq(0),
+			exam_list = exam.find('li'),
+			exam_btn = exam.find('button'),
+			exam_index = 0,
+			turn_count = 0,
+			exam_color = color[turn_count];
+		var colorReset = function(){
+			turn_count++;
+			exam_color = color[turn_count];
+			if(turn_count >= color.length){
+				turn_count = 0;
+				exam_color = color[turn_count];
 			}
-		});
-	}
-	var exam1colorReset = function(){
-		exam1_count++;
-		exam1_color = color[exam1_count];
-		if(exam1_count >= color.length){
-			exam1_count = 0;
-			exam1_color = color[exam1_count];
 		}
+		var colorChange = function(){
+			exam_list.eq(exam_index).css('background',exam_color);
+			exam_index++;
+			if(exam_index >= exam_list.length){
+				exam_index = 0;
+				colorReset();
+			}
+		}
+		exam_btn.on('click', colorChange);
 	}
 	examFunc1();
+
 	
 	// Q2
-	var exam2 = examWrap.eq(1),
-		exam2_list = exam2.find('li'),
-		exam2_btn = exam2.find('button'),
-		exam2_index = exam2_list.length - 1,
-		exam2_count = 0,
-		exam2_color = color[exam2_count];
-
 	var examFunc2 = function(){
-		exam2_btn.on('click',function(){
-			exam2_list.eq(exam2_index).css('background',exam2_color);
-			exam2_index--;
-			if(exam2_index < 0){
-				exam2_index = exam2_list.length - 1;
-				exam2colorReset();
+		var exam = examWrap.eq(1),
+			exam_list = exam.find('li'),
+			exam_btn = exam.find('button'),
+			exam_index = exam_list.length - 1,
+			turn_count = 0,
+			exam_color = color[turn_count];
+		var colorReset = function(){
+			turn_count++;
+			exam_color = color[turn_count];
+			if(turn_count >= color.length){
+				turn_count = 0;
+				exam_color = color[turn_count];
 			}
-		});
-	}
-	var exam2colorReset = function(){
-		exam2_count++;
-		exam2_color = color[exam2_count];
-		if(exam2_count >= color.length){
-			exam2_count = 0;
-			exam2_color = color[exam2_count];
 		}
+		var colorChange = function(){
+			exam_list.eq(exam_index).css('background',exam_color);
+			exam_index--;
+			if(exam_index < 0){
+				exam_index = exam_list.length - 1;
+				colorReset();
+			}
+		}
+		exam_btn.on('click', colorChange);
 	}
 	examFunc2();
 
 
 	// Q3
-	var exam3 = examWrap.eq(2),
-		exam3_list = exam3.find('li'),
-		exam3_btn = exam3.find('button'),
-		exam3_index = exam3_oldindex = 0,
-		exam3_color = color[exam3_index];
-
 	var examFunc3 = function(){
-		exam3_list.eq(0).css('background', exam3_color); // 초기 설정
-		exam3_btn.on('click',function(){
+		var exam = examWrap.eq(2),
+			exam_list = exam.find('li'),
+			exam_btn = exam.find('button'),
+			exam_index = exam_oldindex = 0,
+			exam_color = color[exam_index];
+
+		exam_list.eq(0).css('background', exam_color); // 초기 설정
+
+		var colorChange = function(){
+			exam_color = color[exam_index];
+			exam_list.eq(exam_oldindex).css('background','');
+			exam_list.eq(exam_index).css('background',exam_color);
+			exam_oldindex = exam_index;  // oldindex 맞추기
+		}
+		var btnFunc = function(){
 			var btnContent = $(this).text(); // btn 내용 check
 			if( btnContent === 'plus') {
 				// index 연산 & Check (순서 유의)
-				exam3_index++;
-				if(exam3_index > exam3_list.length - 1){
-					exam3_index = 0;
+				exam_index++;
+				if(exam_index > exam_list.length - 1){
+					exam_index = 0;
 				}
 				// style 변경
-				examFunc3Style();
+				colorChange();
 			} else {
-				exam3_index--;
-				if(exam3_index < 0){
-					exam3_index = exam3_list.length - 1;
+				exam_index--;
+				if(exam_index < 0){
+					exam_index = exam_list.length - 1;
 				}
-				examFunc3Style();
+				colorChange();
 			}
-		});
-	}
-	var examFunc3Style = function(){
-		exam3_color = color[exam3_index];
-		exam3_list.eq(exam3_oldindex).css('background','');
-		exam3_list.eq(exam3_index).css('background',exam3_color);
-		exam3_oldindex = exam3_index;  // oldindex 맞추기
+		}
+		exam_btn.on('click', btnFunc);
 	}
 	examFunc3();
 
-	// Q4
-	var exam4 = examWrap.eq(3),
-		exam4_list = exam4.find('li'),
-		exam4_btn = exam4.find('button'),
-		exam4_index = exam4_oldindex = 0;
 
+	// Q4
 	var examFunc4 = function(){
-		exam4_list.eq(0).addClass('active'); // 초기 설정
-		exam4_btn.on('click',function(){
+		var exam = examWrap.eq(3),
+			exam_list = exam.find('li'),
+			exam_btn = exam.find('button'),
+			exam_index = exam_oldindex = 0;
+
+		exam_list.eq(0).addClass('active'); // 초기 설정
+
+		var cssChange = function(){
+			exam_list.eq(exam_oldindex).removeClass('active');
+			exam_list.eq(exam_index).addClass('active');
+			exam_oldindex = exam_index;
+		}
+		var btnFunc = function(){
 			var btnContent = $(this).text();
 			if( btnContent === 'plus') {
-				exam4_index++;
-				if(exam4_index > exam4_list.length - 1){
-					exam4_index = 0;
+				exam_index++;
+				if(exam_index > exam_list.length - 1){
+					exam_index = 0;
 				}
-				examFunc4Style();
+				cssChange();
 			} else {
-				exam4_index--;
-				if(exam4_index < 0){
-					exam4_index = exam4_list.length - 1;
+				exam_index--;
+				if(exam_index < 0){
+					exam_index = exam_list.length - 1;
 				}
-				examFunc4Style();
+				cssChange();
 			}
-		});
-	}
-	var examFunc4Style = function(){
-		exam4_list.eq(exam4_oldindex).removeClass('active');
-		exam4_list.eq(exam4_index).addClass('active');
-		exam4_oldindex = exam4_index;
+		}
+		exam_btn.on('click', btnFunc);
 	}
 	examFunc4();
 });
