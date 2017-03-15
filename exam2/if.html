@@ -8,6 +8,8 @@
 <script src="../js/libs/jquery-1.7.1.min.js"></script>
 <script>
 $(function(){
+	'use strict';
+
 	var examWrap = $('.exam_wrap'),
 	color = ['crimson','orange','yellow','yellowgreen','forestgreen','deepskyblue','royalblue','darkblue','darkorchid'];
 
@@ -74,7 +76,8 @@ $(function(){
 		var exam = examWrap.eq(2),
 			exam_list = exam.find('li'),
 			exam_btn = exam.find('button'),
-			exam_index = exam_oldindex = 0,
+			exam_index = 0,
+			exam_oldindex = exam_index,
 			exam_color = color[exam_index];
 
 		exam_list.eq(0).css('background', exam_color); // 초기 설정
@@ -87,21 +90,19 @@ $(function(){
 		}
 		var btnFunc = function(){
 			var btnContent = $(this).text(); // btn 내용 check
-			if( btnContent === 'plus') {
-				// index 연산 & Check (순서 유의)
+			// index 연산 & Check (순서 유의)
+			if(btnContent === 'plus') {
 				exam_index++;
 				if(exam_index > exam_list.length - 1){
 					exam_index = 0;
 				}
-				// style 변경
-				colorChange();
 			} else {
 				exam_index--;
 				if(exam_index < 0){
 					exam_index = exam_list.length - 1;
 				}
-				colorChange();
 			}
+			colorChange();
 		}
 		exam_btn.on('click', btnFunc);
 	}
@@ -113,7 +114,8 @@ $(function(){
 		var exam = examWrap.eq(3),
 			exam_list = exam.find('li'),
 			exam_btn = exam.find('button'),
-			exam_index = exam_oldindex = 0;
+			exam_index = 0,
+			exam_oldindex = exam_index;
 
 		exam_list.eq(0).addClass('active'); // 초기 설정
 
@@ -124,19 +126,18 @@ $(function(){
 		}
 		var btnFunc = function(){
 			var btnContent = $(this).text();
-			if( btnContent === 'plus') {
+			if(btnContent === 'plus') {
 				exam_index++;
 				if(exam_index > exam_list.length - 1){
 					exam_index = 0;
 				}
-				cssChange();
 			} else {
 				exam_index--;
 				if(exam_index < 0){
 					exam_index = exam_list.length - 1;
 				}
-				cssChange();
 			}
+			cssChange();
 		}
 		exam_btn.on('click', btnFunc);
 	}
