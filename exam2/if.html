@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>exam</title>
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="common.css" />
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(function(){
+	var examWrap = $('.exam_wrap'),
+	color = ['crimson','orange','yellow','yellowgreen','forestgreen','deepskyblue','royalblue','darkblue','darkorchid'];
+
+	// Q1
+	var exam1 = examWrap.eq(0),
+		exam1_list = exam1.find('li'),
+		exam1_btn = exam1.find('button'),
+		exam1_index = 0,
+		exam1_count = 0,
+		exam1_color = color[exam1_count];
+
+	var examFunc1 = function(){
+		exam1_btn.on('click',function(){
+			exam1_list.eq(exam1_index).css('background',exam1_color);
+			exam1_index++;
+			if(exam1_index >= exam1_list.length){
+				exam1_index = 0;
+				exam1colorReset();
+			}
+		});
+	}
+	var exam1colorReset = function(){
+		exam1_count++;
+		exam1_color = color[exam1_count];
+		if(exam1_count >= color.length){
+			exam1_count = 0;
+			exam1_color = color[exam1_count];
+		}
+	}
+	examFunc1();
+	
+	// Q2
+	var exam2 = examWrap.eq(1),
+		exam2_list = exam2.find('li'),
+		exam2_btn = exam2.find('button'),
+		exam2_index = exam2_list.length - 1,
+		exam2_count = 0,
+		exam2_color = color[exam2_count];
+
+	var examFunc2 = function(){
+		exam2_btn.on('click',function(){
+			exam2_list.eq(exam2_index).css('background',exam2_color);
+			exam2_index--;
+			if(exam2_index < 0){
+				exam2_index = exam2_list.length - 1;
+				exam2colorReset();
+			}
+		});
+	}
+	var exam2colorReset = function(){
+		exam2_count++;
+		exam2_color = color[exam2_count];
+		if(exam2_count >= color.length){
+			exam2_count = 0;
+			exam2_color = color[exam2_count];
+		}
+	}
+	examFunc2();
+
+
+	// Q3
+	var exam3 = examWrap.eq(2),
+		exam3_list = exam3.find('li'),
+		exam3_btn = exam3.find('button'),
+		exam3_index = exam3_oldindex = 0,
+		exam3_color = color[exam3_index];
+
+	var examFunc3 = function(){
+		exam3_list.eq(0).css('background', exam3_color); // 초기 설정
+		exam3_btn.on('click',function(){
+			var btnIndex = exam3_btn.index(this);
+			if( btnIndex === 0) {
+				exam3_index++;
+				if(exam3_index > exam3_list.length - 1){
+					exam3_index = 0;
+				}
+				examFunc3Style();
+			} else {
+				exam3_index--;
+				if(exam3_index < 0){
+					exam3_index = exam3_list.length - 1;
+				}
+				examFunc3Style();
+			}
+		});
+	}
+	var examFunc3Style = function(){
+		exam3_color = color[exam3_index];
+		exam3_list.eq(exam3_oldindex).css('background','');
+		exam3_list.eq(exam3_index).css('background',exam3_color);
+		exam3_oldindex = exam3_index;
+	}
+	examFunc3();
+
+	// Q4
+	var exam4 = examWrap.eq(3),
+		exam4_list = exam4.find('li'),
+		exam4_btn = exam4.find('button'),
+		exam4_index = exam4_oldindex = 0;
+
+	var examFunc4 = function(){
+		exam4_list.eq(0).addClass('active'); // 초기 설정
+		exam4_btn.on('click',function(){
+			var btnIndex = exam4_btn.index(this);
+			if( btnIndex === 0) {
+				exam4_index++;
+				if(exam4_index > exam4_list.length - 1){
+					exam4_index = 0;
+				}
+				examFunc4Style();
+			} else {
+				exam4_index--;
+				if(exam4_index < 0){
+					exam4_index = exam4_list.length - 1;
+				}
+				examFunc4Style();
+			}
+		});
+	}
+	var examFunc4Style = function(){
+		exam4_list.eq(exam4_oldindex).removeClass('active');
+		exam4_list.eq(exam4_index).addClass('active');
+		exam4_oldindex = exam4_index;
+	}
+	examFunc4();
+});
+</script>
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>Q. 처음부터 순서대로 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<ul>
+					<li>one</li>
+					<li>two</li>
+					<li>three</li>
+					<li>four</li>
+					<li>five</li>
+					<li>six</li>
+					<li>seven</li>
+					<li>eight</li>
+				</ul>
+			</div>
+			<button type="button">plus</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 마지막부터 역순대로 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<ul>
+					<li>one</li>
+					<li>two</li>
+					<li>three</li>
+					<li>four</li>
+					<li>five</li>
+					<li>six</li>
+					<li>seven</li>
+				</ul>
+			</div>
+			<button type="button">minus</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 순서대로 일치하게 하시고, 바로 전에 일치됐던 엘리먼트는 색을 지우시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<ul>
+					<li>one</li>
+					<li>two</li>
+					<li>three</li>
+					<li>four</li>
+					<li>five</li>
+					<li>six</li>
+					<li>seven</li>
+					<li>eight</li>
+					<li>nine</li>
+				</ul>
+			</div>
+			<button type="button">plus</button>
+			<button type="button">minus</button>
+		</div>
+        <div class="exam_wrap">
+            <h1>Q. 순서대로 일치하게 하시고, 바로 전에 일치됐던 엘리먼트는 색을 지우시오.(클래스 제어)</h1>
+            <div class="exam_q"><!-- 부모 -->
+                <ul>
+                    <li>one</li>
+                    <li>two</li>
+                    <li>three</li>
+                    <li>four</li>
+                    <li>five</li>
+                    <li>six</li>
+                    <li>seven</li>
+                    <li>eight</li>
+                    <li>nine</li>
+                </ul>
+            </div>
+            <button type="button">plus</button>
+            <button type="button">minus</button>
+        </div>
+	</div>
+	<!-- container [e] -->
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+	<a href="javascript:history.go(-1)" class="btn-back">index로 돌아가기</a>
+</div>
+<!-- wrapper [e] -->
+</body>
+</html>

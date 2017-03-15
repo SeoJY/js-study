@@ -1,0 +1,13 @@
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-size:14px;font-family:'NanumSquare','NanumGothic','Malgun Gothic','Dotum','Gulim',Helvetica;line-height:1.5}
+#wrap,#wrapper{max-width:1024px;margin:20px auto;padding:0 20px}
+#wrap h2{margin-top:30px}
+#wrap h2:before{content:'▣ ';}
+#wrap h3{margin-top:20px}
+#wrap>ul{margin-top:10px;padding-left:40px}
+#wrap ul ul{padding-left:20px}
+#wrap pre{padding:10px 15px;background-color:#eee}
+#wrap code{font-family:'consolas';font-style:italic}
+.btn-back{display:inline-block;margin:30px 0;font-size:15px;color:#1428a0;text-decoration:none}
+.btn-back:before{content:'◀ ';}
+.btn-back:hover,.btn-back:focus{text-decoration:underline}
