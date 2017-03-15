@@ -78,12 +78,14 @@ $(function(){
 	var examFunc3 = function(){
 		exam3_list.eq(0).css('background', exam3_color); // 초기 설정
 		exam3_btn.on('click',function(){
-			var btnIndex = exam3_btn.index(this);
-			if( btnIndex === 0) {
+			var btnContent = $(this).text(); // btn 내용 check
+			if( btnContent === 'plus') {
+				// index 연산 & Check (순서 유의)
 				exam3_index++;
 				if(exam3_index > exam3_list.length - 1){
 					exam3_index = 0;
 				}
+				// style 변경
 				examFunc3Style();
 			} else {
 				exam3_index--;
@@ -98,7 +100,7 @@ $(function(){
 		exam3_color = color[exam3_index];
 		exam3_list.eq(exam3_oldindex).css('background','');
 		exam3_list.eq(exam3_index).css('background',exam3_color);
-		exam3_oldindex = exam3_index;
+		exam3_oldindex = exam3_index;  // oldindex 맞추기
 	}
 	examFunc3();
 
@@ -111,8 +113,8 @@ $(function(){
 	var examFunc4 = function(){
 		exam4_list.eq(0).addClass('active'); // 초기 설정
 		exam4_btn.on('click',function(){
-			var btnIndex = exam4_btn.index(this);
-			if( btnIndex === 0) {
+			var btnContent = $(this).text();
+			if( btnContent === 'plus') {
 				exam4_index++;
 				if(exam4_index > exam4_list.length - 1){
 					exam4_index = 0;
