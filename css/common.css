@@ -11,3 +11,4 @@ body,input,textarea,select,button,table{font-size:14px;font-family:'NanumSquare'
 .btn-back{display:inline-block;margin:30px 0;font-size:15px;color:#1428a0;text-decoration:none}
 .btn-back:before{content:'◀ ';}
 .btn-back:hover,.btn-back:focus{text-decoration:underline}
+.uio-box{overflow:hidden;margin-top:10px;padding:20px;background-color:#f7f7f7;line-height:2}
