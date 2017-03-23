@@ -8,77 +8,6 @@
 <script src="../js/libs/jquery-1.7.1.min.js"></script>
 <script>
 $(function(){
-    // 'use strict';
-
-    // // switch
-    // var a = 74;
-    // switch(a) {
-    //  case 10;
-    //  console.log('10');
-    // }
-
-    // // while
-    // var b = 0;
-    // while (b < 10) {
-    //  console.log(b);
-    //  b++;
-    // }
-
-    // var c = Math.random() + 10;
-    // while (c === 5) {
-    //  console.log(c);
-    //  c++;
-    // }
-
-    // // for (변수선언 ; 조건문; 증감연산자)
-    // for(var i = 0; i < 10; i++){
-    //  console.log(i);
-    // }
-    // // 조건문에 $('li').length같은 방식으로 사용하면 최적화에 좋지 않음.
-    // // 변수에 넣고 조건문에 넣는 것이 좋음
-    // for(var j = 0, max = $('li').length; j < max; j++){
-    //  console.log(j);
-    // }
-    // var k = 0,
-    //  max = $('li').length;
-    // for(; k < max;) {
-    //  console.log(k);
-    // }
-
-    //
-    var arrayObj = [
-        ['data1', 'data2', 'data3', 'data4', 'data5'],
-        ['attribute1', 'attribute2', 'attribute3', 'attribute4', 'attribute5'],
-        ['data1', 'data2', 'data3', 'data4', 'data5'],
-        ['attribute01', 'attribute02', 'attribute03', 'attribute04', 'attribute05'],
-    ],
-        tagPush = ''; // 문자열
-    for (var i = 0, max = arrayObj.length; i < max; i++) {
-        // tagPush += '<tr><td>' + arrayObj[i] + '</td></tr>';
-        tagPush += '<tr>';
-        for(var td = 0; td < 5; td++) {
-            tagPush += '<td>' + arrayObj[i][td] + '</td>'
-        }
-        tagPush += '</tr>';
-    }
-    // $('#data_tbody').html(tagPush);
-    $('#data_tbody').get(0).innerHTML = tagPush;
-
-
-    var array = [];
-    var obj = {};
-
-    var objFunc = {
-        key : 'value',
-        key2 : 3,
-        key3 : function(){},
-        key4 : [],
-        key5 : {}
-    }
-    console.log(objFunc.key);
-    console.log(objFunc.key2);
-    console.log(objFunc.key3);
-    objFunc.key3();     // 함수실행
 
     var objFunc2 = {
         init : function() {
@@ -92,6 +21,9 @@ $(function(){
         },
         bindEvents : function() {
             this.obj.on('click', $.proxy(this.viewFunc, this));
+            this.obj.on('click', $.proxy(function(){
+                this.viewFunc(a,b,c); // 인자넣기
+            }, this));
         },
         viewFunc : function() {
             console.log(this);
@@ -104,6 +36,30 @@ $(function(){
         }
     }
     objFunc2.init();
+
+    //인자, return
+    function sum(a,b) {
+        var c = a + b;
+        return c;
+        return false/true;
+        return {
+            init : function(){} // 객체도 가능
+        }
+    }
+    var resultNum = sum(3, 8);
+    console.log(resultNum);
+
+    // 즉시실행함수
+    (function(win, $){
+        var obj = {
+            init : function(){}
+        }
+        $(function(){
+            obj.init();
+        });
+    })(window, window.jQuery); 
+    // win : 긴 객체를 줄임, $ : 다른 라이브러리와의 '$' 충돌을 막기 위함(no conflict)
+
 });
 </script>
 </head>
