@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Summary - #05</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+<div id="wrap">
+    <h1>Study Summary - #05</h1>
+
+    <h2>객체 내 this관리</h2>
+    <ul>
+    <li>$.proxy(this.function, this)</li>
+    <li>$(e.currentTarget)</li>
+    <li>arguments[0] : 인수 set 참조</li>
+    </ul>
+
+    <h2>on vs bind</h2>
+    <ul>
+    <li>on : HTML이 동적으로 그려질 경우 DOM을 계속 탐색하게 해줌(항상 체크)</li>
+    <li>bind : HTML이 동적으로 그려질 경우 새로 업데이트된 요소는 처리 불가능. on보다 old한 메소드</li>
+    </ul>
+
+    <h2>함수</h2>
+    <ul>
+    <li>선언함수
+        <ul>
+        <li>함수 선언과 호출의 순서가 바뀌어도 가능(함수 호이스팅). 관리 효율상 비권장</li>
+        </ul>
+    </li>
+    <li>익명함수</li>
+    <li>객체지향함수</li>
+    <li>즉시실행함수
+        <ul>
+        <li>선언과 호출이 동시에 이루어지는 함수</li>
+        <li>단 한번만 호출됨 -> 한 번만 실행해도 되는 함수에 사용. 한 번만 실행해도 되는 함수라는 명시적 효과</li>
+        <li>ex) 반응형 브라우저, 디바이스 체크 등</li>
+        </ul>
+    </li>
+    </ul>
+
+    <h2>인자</h2>
+    <ul>
+    <li>argument</li>
+    <li>함수로 유입되는 입력값</li>
+    </ul>
+    <pre><code>function(a, b) { var c = a + b }</code></pre>
+    <pre><code>var objFunc2 = {
+    init : function() {
+        this.setElements();
+        this.bindEvents();
+        this.newObject.init();
+    },
+    setElements : function() {
+        this.obj = $('.obj');
+        this.btn = $('.btn');
+    },
+    bindEvents : function() {
+        this.obj.on('click', $.proxy(this.viewFunc, this));
+        this.obj.on('click', $.proxy(function(){
+            this.viewFunc(a,b,c); // 인자넣기
+        }, this));
+    },
+    viewFunc : function() {
+        console.log(this);
+        console.log('click');
+    },
+    newObject : {
+        init : function() {
+
+        }
+    }
+}
+objFunc2.init();</code></pre>
+    <a href="javascript:history.go(-1)" class="btn-back">index로 돌아가기</a>
+</div>
+</body>
+</html>
