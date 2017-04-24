@@ -109,8 +109,9 @@ button::-moz-focus-inner{padding:0;border:0}
             this.initLayout();
             this.bindEvents();
         },
-        reInit : function () {  // dom 로드 후 실행시킬 함수 모음
+        reInit : function () {  // dom 로드 후 실행시킬 함수 모음. 확장성때문에 reInit으로 묶어줌. ajax등으로 dom을 지웠다가 다시 그리는 경우, event가 모두 날아가기 때문에, reInit에 bindEvents를 넣어서 BE개발자들에게 실행시키라고 가이드 하는 것이 좋다
             this.nextFocusFunc();
+            // this.bindEvents();
         },
         setElements : function () { // 요소들을 변수에 담음
             this.layerWrap = $(this.opts.layerWrapElement);
@@ -139,10 +140,13 @@ button::-moz-focus-inner{padding:0;border:0}
             this.layerObj.on('keydown', $.proxy(this.escapeFunc, this));        // layer 팝업 상에서 키보드를 눌렀을 때 escapeFunc 함수 실행 
         },
         layerClose : function () {
-           this.layerObj.triggerHandler('clickoutside');    // layer 팝업 clickoutside 이벤트를 발생
+           this.layerObj.triggerHandler('clickoutside');    // layer 팝업 clickoutside 이벤트를 발생 - trigger와는 달리 기본 이벤트의 기능이 실행되지는 않는다. 오로지 함수만 실행(ex- 'focus' focus가 가지 않는다)
         },
         outSideEvents : function () {
             this.layerObj.on('clickoutside touchendoutside', $.proxy(this.layerClickOutside, this));    // layer 팝업에 clickoutside, touchendoutside 이벤트 발생시 layerClickOutside 함수 실행 (layer 팝업 외부를 클릭 or 터치했을 경우)
+            // touchendoutside 아이폰5 버그 fix
+            // body스크롤 막기 - 스크롤되는 여역에 swipe적용. 스크롤되는 영역 외부에서는 레이어 삭제
+            // touchstartoutside
         },
         escapeFunc : function (e) {
             var keyCode = e.which || e.keyCode;     // 키보드 코드 받아오기
@@ -187,7 +191,7 @@ button::-moz-focus-inner{padding:0;border:0}
             }
             this.btnTarget.focus();     // 토글했던 버튼에 focus 처리
         },
-        hideAfterBugFunc : function () {
+        hideAfterBugFunc : function () {    // system 오류 보정을 위해 시간차 (for show/hide)
             win.clearTimeout(this.closeAfterTimeout);   // closeAfterTimeout의 setTimeout 해제
             this.closeAfterTimeout = win.setTimeout($.proxy(this.layerCloseAfter, this), 30);   // layerCloseAfter 함수를 0.03초 후 실행
         },
@@ -202,7 +206,8 @@ button::-moz-focus-inner{padding:0;border:0}
             this.layerObj.focus();          // layer 팝업에 focus
         },
         outCallback : function (type) {
-            var callbackObject = this.opts[type];   // callbackObject에 함수 실행시 인자값에 따른 함수 받아오기
+            var callbackObject = this.opts[type];   // callbackObject에 함수 실행시 인자값(매개변수 key값)에 따른 함수 받아오기
+                                                    // this.opts.viewBefore = this.opts['viewBefore'] 전자 권장. 후자가 가능하다는 것만 알고 있으면 됨.
             if (callbackObject !== null) {          // 받아온 함수가 null이 아닐 경우
                 callbackObject();                   // callbackObject 함수 실행
             }
@@ -236,7 +241,7 @@ button::-moz-focus-inner{padding:0;border:0}
             this.posLayer2.reInit();        // posLayer2의 reInit 실행 - layer 팝업에 focus
             this.posLayer3.reInit();        // posLayer3의 reInit 실행 - layer 팝업에 focus
         },
-        setLayer : function () {            // win.examProject.commonLayer와 연결
+        setLayer : function () {            // win.examProject.commonLayer와 연결. 기능이 type별로 달라서 이렇게 설정. $.fn은 type변경없이 공통인 경우에 용이
             this.posLayer = new win.examProject.commonLayer({       // 매개변수값을 재선언하여 win.examProject.commonLayer를 호출하여 posLayer에 담음
                 type : 'fade',
                 btnElements : '.js-btn-fade button',
@@ -272,17 +277,17 @@ button::-moz-focus-inner{padding:0;border:0}
                 closeAfter : $.proxy(this.closeAfter, this)
             });
         },
-        viewBefore : function () {
-            if (win.console) win.console.log('layer View Before');      // 테스트용 콘솔 로그? - 팝업 토글 버튼 누르고 layer팝업 view되기 전 실행
+        viewBefore : function () {      // 팝업 토글 버튼 누르고 layer팝업 view되기 전 실행되는 함수
+            if (win.console) win.console.log('layer View Before');      
         },
-        viewAfter : function () {
-            if (win.console) win.console.log('layer View After');      // 테스트용 콘솔 로그? - layer팝업 view된 후 실행
+        viewAfter : function () {       // layer팝업 view된 후 실행되는 함수
+            if (win.console) win.console.log('layer View After');      
         },
-        closeBefore : function () {
-            if (win.console) win.console.log('layer Close Before');     // 테스트용 콘솔 로그? - 닫기 버튼 누르고 layer팝업 close 되기 전 실행
+        closeBefore : function () {     // 닫기 버튼 누르고 layer팝업 close 되기 전 실행되는 함수
+            if (win.console) win.console.log('layer Close Before');     
         },
-        closeAfter : function () {
-            if (win.console) win.console.log('layer Close After');      // 테스트용 콘솔 로그? - layer팝업 close 된 후 실행
+        closeAfter : function () {      // layer팝업 close 된 후 실행되는 함수
+            if (win.console) win.console.log('layer Close After');      
         }
     };
 
