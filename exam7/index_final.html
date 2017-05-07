@@ -145,7 +145,7 @@ button::-moz-focus-inner{padding:0;border:0}
         outSideEvents : function () {
             this.layerObj.on('clickoutside touchendoutside', $.proxy(this.layerClickOutside, this));    // layer 팝업에 clickoutside, touchendoutside 이벤트 발생시 layerClickOutside 함수 실행 (layer 팝업 외부를 클릭 or 터치했을 경우)
             // touchendoutside 아이폰5 버그 fix
-            // body스크롤 막기 - 스크롤되는 여역에 swipe적용. 스크롤되는 영역 외부에서는 레이어 삭제
+            // body스크롤 막기 - 스크롤되는 영역에 swipe적용. 스크롤되는 영역 외부에서는 레이어 삭제
             // touchstartoutside
         },
         escapeFunc : function (e) {
