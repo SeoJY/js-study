@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <title> continue문 </title>
 <script>
-	
+	document.write("<strong>1부터 10까지 2의 배수일 경우에만 continue문을 실행하여 홀수만 출력</strong><br>");
+	for(var i = 1; i <= 10; i++) {
+		if(i%2 == 0) continue;
+		document.write(i + "<br>");
+	}
 	document.write("=== The End ===");
 </script>
 </head>
