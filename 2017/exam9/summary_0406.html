@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Summary - #09</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+<div id="wrap">
+    <h1>Study Summary - #09</h1>
+
+    <h2>index 체크에 배열 활용하기</h2>
+    <ul>
+    <li>형제요소가 해당 요소만 있는 것이 아닐 경우 : 배열에 해당 요소를 담아 $(e.currentTarget)로 index를 가져옴</li>
+    </ul>
+<pre><code>var tabObj = $('.cast_tab ul li a'),
+index = tabObj.index($(e.currentTarget));
+</code></pre>
+
+    <h2>hash값 가져오기 #id</h2>
+    <ul>
+    <li>window.location.hash</li>
+    <li>window.location.hash = '#' + $('selector').attr('id')</li>
+    </ul>
+
+    <h2>hash값 변경 event</h2>
+    <ul>
+    <li>on('hashchange', function(){})</li>
+    </ul>
+
+    <a href="javascript:history.go(-1)" class="btn-back">index로 돌아가기</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>for/while</title>
+<link rel="stylesheet" href="../css/common.css">
+<style>
+    .multi-list {padding-left:20px}
+    .col {float:left;width:12.5%;border-left:1px solid #e9e9e9;text-align:center;box-sizing:border-box}
+    .col:first-child {border-left:0}
+    .col h3{margin-top:0 !important}
+</style>
+<script src="../js/libs/jquery-1.7.1.min.js"></script>
+<script>
+(function (win, $) {
+    $(function(){
+        var obj = {
+            init : function() {
+                this.setElements();
+                this.bindEvents();
+            },
+            setElements : function() {
+                this.wrap = $('.exam-wrap'),
+                this.box = this.wrap.find('.uio-box'),
+                this.btn = this.wrap.find('button');
+            },
+            bindEvents : function() {
+                this.btn.on('click', $.proxy(this.btnFunc, this));
+            },
+            btnFunc : function(e) {
+                var _this = $(e.currentTarget),
+                _index = _this.parents('.exam').index();
+                if(_index === 0) {
+                    this.exam1Func(_index);
+                } else if (_index === 1) {
+                    this.exam2Func(_index);
+                } else {
+                    this.exam3Func(_index);
+                }
+            },
+            exam1Func : function(index) {
+                var str = '';
+                for(var i = 1; i < 6; i++) {
+                    if( i%2 === 0) {
+                        str += '<input type="text" placeholder="짝수입니다"><br>';
+                    } else {
+                        str += '<input id="chk' + i + '" type="checkbox"> <label for="chk' + i + '">홀수입니다</label><br>';
+                    }
+                    this.box.eq(index).get(0).innerHTML = str;
+                }
+            },
+            exam2Func : function(index) {
+                var str = '';
+                str = '<ul class="multi-list">';
+                for(var i = 1; i < 10; i++) {
+                    str += '<li>7 x ' + i + ' = ' + i*7 + '</li>';
+                }
+                str += '</ul>';
+                this.box.eq(index).get(0).innerHTML = str;
+            },
+            exam3Func : function(index) {
+                var str = '';
+                for(var i = 2; i < 10; i++) {
+                    str += '<div class="col"><h3>' + i + '단</h3>';
+                    var j = 1;
+                    while (j < 10) {
+                        str += i + ' x ' + j + ' = ' + i*j + '<br>';
+                        j++;
+                    }
+                    str += '</div>';
+                }
+                this.box.eq(index).get(0).innerHTML = str;
+            }
+        }
+        obj.init();
+    });
+})(window, window.jQuery);
+</script>
+</head>
+<body>
+<div id="wrap">
+    <h1>For/While문</h1>
+    <div class="exam-wrap">
+        <div class="exam">
+            <h2>5개의 input 중 짝수는 text / 홀수는 checkbox 를 만들어보기 <button type="button">Run</button></h2>
+            <div class="uio-box"></div>
+        </div>
+        <div class="exam">
+            <h2>구구단 7단을 반복문을 이용해 만들어보기 <button type="button">Run</button></h2>
+            <div class="uio-box"></div>
+        </div>
+        <div class="exam">
+            <h2>반복문 for/while 문을 이용해 모든 구구단 만들어보기 <button type="button">Run</button></h2>
+            <div class="uio-box"></div>
+        </div>
+    </div>
+    <a href="javascript:history.go(-1)" class="btn-back">index로 돌아가기</a>
+</div>
+</body>
+</html>
