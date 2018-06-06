@@ -4,7 +4,26 @@
 	<meta charset = "UTF-8">
 	<title> 날짜 정보 객체 </title>
 	<script>
+        var today = new Date();
+        console.log(today);
+        var nowMonth = today.getMonth(),
+        nowDate = today.getDate(),
+        nowDay = today.getDay();
 
+        document.write("<h1>오늘 날짜 정보</h1>");
+        document.write("월 : " + nowMonth + "<br>");
+        document.write("일 : " + nowDate + "<br>");
+        document.write("요일 : " + nowDay + "<br>");
+
+        var worldcup = new Date(2002,4,31);
+        var theMonth = worldcup.getMonth(),
+        theDate = worldcup.getDate(),
+        theDay = worldcup.getDay();
+
+        document.write("<h1>2002 월드컵 날짜 정보</h1>");
+        document.write("월 : " + theMonth + "<br>");
+        document.write("일 : " + theDate + "<br>");
+        document.write("요일 : " + theDay + "<br>");
 	</script>
 </head>
 <body>
