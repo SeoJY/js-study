@@ -7,6 +7,21 @@
 	var greenArr = ["교대", "방배", "강남"];
 	var yellowArr = ["미금","정자","수서"];
 
+    greenArr.splice(2,1,"서초", "역삼");
+    document.write("splice(2,1,'서초', '역삼') 2번 인덱스부터 1개 데이터 삭제하고 뒤의 데이터 삽입 : " + greenArr + "<br>");
+
+    var data1 = yellowArr.pop();        // 마지막 인덱스 데이터를 떼어 저장 - 수서
+    var data2 = yellowArr.shift();      // 처음 인덱스 데이터를 떼어 저장 - 미금
+    document.write("data1 : " + data1 + "<br>");
+    document.write("data2 : " + data2 + "<br>");
+    document.write("편집한 yellowArr : " + yellowArr + "<br>");
+
+    yellowArr.push(data2);
+    document.write("push 데이터 마지막에 붙이기 : " + yellowArr + "<br>");
+
+    yellowArr.unshift(data1);
+    document.write("unshift 데이터 처음에 붙이기 : " + yellowArr + "<br>");
+
 </script>
 </head>
 <body>

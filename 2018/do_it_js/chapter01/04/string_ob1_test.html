@@ -6,6 +6,29 @@
 <script>
 	var str = "Hello Thank you good luck to you";
 
+    document.write("str : " + str + "<br>");
+    document.write("str.charAt(16) : " + str.charAt(16) + "<br>");
+    document.write("str.indexOf('you') : " + str.indexOf("you") + "<br>");
+    document.write("str.indexOf('you',16) : " + str.indexOf("you",16) + "<br>");
+    document.write("str.lastIndexOf('you') : " + str.lastIndexOf("you") + "<br>");
+    document.write("str.lastIndexOf('you',25) : " + str.lastIndexOf("you",25) + "<br>");
+    document.write("str.match('luck') : " + str.match("luck") + "<br>");
+    document.write("str.search('you') : " + str.search("you") + "<br>");
+    document.write("str.substr(21,4) : " + str.substr(21,4) + "<br>");
+    document.write("str.substring(6,12) : " + str.substring(6,12) + "<br>");
+    document.write("str.replace('you','me') : " + str.replace("you","me") + "<br>");
+    document.write("str.toLowerCase() : " + str.toLowerCase() + "<br>");
+    document.write("str.toUpperCase() : " + str.toUpperCase() + "<br>");
+    document.write("str.length : " + str.length + "<br>");
+
+    var s = str.split(" ");
+    document.write("s[0] : " + s[0] + "<br>");
+    document.write("s[4] : " + s[4] + "<br>");
+
+    var t = "A";
+    var ascii = t.charCodeAt(0);
+    document.write(ascii);
+    document.write(String.fromCharCode(65) + "<br>");
 </script>
 </head>
 <body>
