@@ -7,6 +7,15 @@
 	var color=["white", "yellow", "aqua", "purple"];
 			
 	var i=0;
+	function changeColor(){
+		i++;
+		var colorMax = color.length;
+		if(i >= colorMax){
+			i=0;
+		}
+		var bodyTag = document.getElementById("theBody");
+		bodyTag.style.backgroundColor = color[i];
+	}
 
 </script>
 </head>
