@@ -14,7 +14,10 @@ $(function(){
 		"background-color":"#ff0",
 		"border":"2px dashed #f00"
 	}
-
+	var txt = $('.txt');
+	txt.prev().css(style_1);
+	$('.txt + p').css(style_2);
+	txt.next().next().css(style_2);
 
 });
 </script>
