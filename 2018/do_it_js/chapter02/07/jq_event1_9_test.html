@@ -6,7 +6,11 @@
 <script src="js/jquery.js"></script>
 <script>
 	$(window).on("scroll",function(){
+		var scr_top = $(this).scrollTop();
+		var scr_left = $(this).scrollLeft();
 
+		$('.top').text(scr_top);
+		$('.left').text(scr_left);
 	});
 </script>
 <style>

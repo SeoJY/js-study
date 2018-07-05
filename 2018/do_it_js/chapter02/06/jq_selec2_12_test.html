@@ -6,7 +6,19 @@
 <script src="js/jquery.js"></script>
 <script>
 $(function(){
-	
+	$('#wrap p:hidden').css({		// 숨겨진 p를 찾아 노출하고 배경색상을 노랗게
+		"display":"block",
+		"background":"#ff0"
+	});
+
+	var z1 = $('#zone1 :selected').val();	// selected된 요소의 value값을 가져옴 
+	console.log(z1);
+
+	var z2 = $('#zone2 :checked').val();	// checked된 요소의 value값을 가져옴 
+	console.log(z2);
+
+	var z3 = $('#zone3 :checked').val();	// checked된 요소의 value값을 가져옴 
+	console.log(z3);
 });
 </script>
 </head>

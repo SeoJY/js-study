@@ -11,9 +11,21 @@ $(function(){
 		{"area":"부산"},
 		{"area":"전주"}
 	];
-
+	$(obj).each(function(i, o){ // index, 객체
+		// var txt = i + ':' + o;
+		console.log(i + ':', o);
+		// console.log(o);
+		// document.write(i);
+		// $('#menu2').append(i);
+	});
 	console.log("==== The End 1 ====");
-	console.log("==== The End 2 ====");
+	$.each($('#menu1 li'), function(i, o){
+		console.log(i + ':', o);
+	});
+	console.log("==== The End 2 ===="); // index 오름차순으로 $(this)에 반환
+	$.each($('#menu2 li'), function(i){
+		console.log(i + ':', $(this));
+	});
 
 });
 </script>

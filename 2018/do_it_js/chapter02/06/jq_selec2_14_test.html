@@ -6,7 +6,12 @@
 <script src="js/jquery.js"></script>
 <script>
 $(function(){
- 
+ 	$('#inner_1').find('.txt1').css('background-color','#ff0');
+ 	$('#inner_1 p').filter('.txt2').css('background-color','#0ff');
+ 	$('#inner_2 p').filter(function(i, o){
+ 		console.log(i);
+ 		return i % 2 == 0;			// index가 짝수인 요소만 색칠(홀수 요소)
+ 	}).css('background-color','#0ff');
 });
 </script>
 </head>

@@ -12,7 +12,17 @@ $(function(){
 			"name":"정부장", 
 			"area":"서울"
 	}
-	
+	var idxNum = $.inArray("부산",arr1); // arr1에서 부산을 찾아 index값을 반환
+    console.log(idxNum);
+
+    var okArray1 = $.isArray(arr1); // arr1이 배열인가? => true
+    var okArray2 = $.isArray(obj);  // obj가 배열인가? => false
+    console.log(okArray1);
+    console.log(okArray2);
+
+    $.merge(arr2, arr1);    // arr2에 arr1을 합침
+    console.log(arr1)
+    console.log(arr2)
 });
 </script>
 </head>
