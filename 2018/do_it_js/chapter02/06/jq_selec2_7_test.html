@@ -12,8 +12,10 @@ $(function(){
 		{"area":"전주"}
 	];
 	$(obj).each(function(i, o){ // index, 객체
-		// var txt = i + ':' + o;
+		var objStr = JSON.stringify(o); // object를 문자열화
+		var txt = i + ':' + objStr;
 		console.log(i + ':', o);
+		console.log(txt);
 		// console.log(o);
 		// document.write(i);
 		// $('#menu2').append(i);
