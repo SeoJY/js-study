@@ -6,7 +6,13 @@
 <script src="js/jquery.js"></script>
 <script>
 $(function() {
-
+	$.ajax({
+		url: "http://www.khan.co.kr/rss/rssdata/it_news.xml",
+		dataType: "xml",
+		success: function(data) {
+			console.log(data);
+		}
+	});
 });
 </script>
 </head>
