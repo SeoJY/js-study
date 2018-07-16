@@ -6,7 +6,16 @@
 <script src="js/jquery.js"></script>
 <script>
 $(function() {
+	$('.txt1')
+	.animate({marginLeft: '100px'},1000)
+	.animate({marginLeft: '300px'},1000)
+	.animate({marginLeft: '400px'},1000);
 
+	$('.txt2')
+	.animate({marginLeft: '100px'},1000)
+	.animate({marginLeft: '300px'},1000)
+	.animate({marginLeft: '400px'},1000);
+	$('.txt2').clearQueue();				// 현재 진행중인 애니메이션(첫번째)를 제외하고 대기 중인 애니메이션은 모두 제거
 });
 </script>
 <style>
