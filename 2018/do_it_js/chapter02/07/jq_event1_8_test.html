@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 이벤트 </title>  
+<script src="js/jquery.js"></script>
+<script>
+$(function( ) {
+    $(document).on('mousemove', function(e){
+        $('.posX').text(e.pageX);
+        $('.posY').text(e.pageY);
+        $('.clientX').text(e.clientX);
+        $('.clientY').text(e.clientY);
+        $('.screenX').text(e.screenX);
+        $('.screenY').text(e.screenY);
+        $('.layerX').text(e.layerX);
+        $('.layerY').text(e.layerY);
+    })
+});
+</script>
+</head>
+<body style="width:1920px;height:2000px">
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);">
+    <h1>mousemove</h1>
+    <p>pageX : <span class="posX">0</span>px</p>
+    <p>pageY : <span class="posY">0</span>px</p>
+    <p>clientX : <span class="clientX">0</span>px</p>
+    <p>clientY : <span class="clientY">0</span>px</p>
+    <p>screenX : <span class="screenX">0</span>px</p>
+    <p>screenY : <span class="screenY">0</span>px</p>
+    <p>layerX : <span class="layerX">0</span>px</p>
+    <p>layerY : <span class="layerY">0</span>px</p>
+</div>
+</body>
+</html>
